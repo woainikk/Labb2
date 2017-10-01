@@ -1,7 +1,3 @@
-//
-// Created by Маргарита on 20.09.2017.
-//
-
 #ifndef OOP2_STATISTICMULTISET_H
 #define OOP2_STATISTICMULTISET_H
 
@@ -20,32 +16,28 @@ class StatisticMultiset {
 public:
     void addNum(const T &num) {
         repository.insert(num);
-        this->myAboveCache.clear();
-        this->myUnderCache.clear();
+        cleanCashes();
     }
 
     void addNum(const multiset<T> &numbers) {
-        for (auto i = numbers.begin(); i != numbers.end(); i++) {
-            repository.insert(*i);
+        for (auto i : numbers) {
+            repository.insert(i);
         }
-        this->myAboveCache.clear();
-        this->myUnderCache.clear();
+        cleanCashes();
     }
 
     void addNum(const vector<T> &numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            repository.insert(numbers[i]);
+        for (int i : numbers) {
+            repository.insert(i);
         }
-        this->myAboveCache.clear();
-        this->myUnderCache.clear();
+        cleanCashes();
     }
 
     void addNum(const list<T> &numbers) {
-        for (auto i = numbers.begin(); i != numbers.end(); i++) {
-            repository.insert(*i);
+        for (auto i : numbers) {
+            repository.insert(i);
         }
-        this->myAboveCache.clear();
-        this->myUnderCache.clear();
+        cleanCashes();
     }
 
     void addNumsFromFile(const string &filename) {
@@ -55,37 +47,34 @@ public:
             file >> j;
             repository.insert(j);
         }
-        this->myAboveCache.clear();
-        this->myUnderCache.clear();
+        cleanCashes();
     }
 
     T getMax() const {
-        auto iterator = --repository.end();
-        T mx = *iterator;
+        //auto iterator = --repository.end();
+        T mx = *(--repository.end());
         return mx;
     }
 
     T getMin() const {
-        auto iterator = repository.begin();
-        T mn = *iterator;
+        //auto iterator = repository.begin();
+        T mn = *(repository.begin());
         return mn;
     }
 
     float getAvg() const {
         float avg = 0;
-        for (auto i = repository.begin(); i != repository.end(); i++) {
-            avg += *i;
+        for (auto i : repository) {
+            avg += i;
         }
         avg = avg / repository.size();
         return avg;
     }
 
     int getCountUnder(float threshold) const {
-        auto iterator = repository.lower_bound(threshold);
-        auto iterator2 = repository.begin();
         int count = 0;
-        for (auto i = iterator2; i != iterator; i++) {
-            if (*i != threshold) {
+        for (auto i : repository ) {
+            if (i != threshold) {
                 count++;
             }
         }
@@ -94,11 +83,9 @@ public:
     }
 
     int getCountAbove(float threshold) const {
-        auto iterator = repository.upper_bound(threshold);
-        auto iterator2 = repository.end();
         int count = 0;
-        for (auto i = iterator; i != iterator2; i++) {
-            if (*i != threshold) {
+        for (auto i : repository) {
+            if (i != threshold) {
                 count++;
             }
         }
@@ -107,28 +94,21 @@ public:
     }
 
     void printMS() {
-        for (auto i = repository.begin(); i != repository.end(); i++) {
-            cout << *i << " ";
+        for (auto i : repository) {
+            cout << i << " ";
         }
     }
 
-    mutable map<float, int> myUnderCache;
-    mutable map<float, int> myAboveCache;
-
-
-
-    /*void cacheFilling(){
-        int it = *repository.begin();
-        for (auto i = repository.begin()++; i != repository.end(); i++) {
-
-            myCache[it] = getCountAbove(it);
-        }
-    }*/
 
 
 private:
     multiset<T> repository;
-
+    mutable map<float, int> myUnderCache;
+    mutable map<float, int> myAboveCache;
+    void cleanCashes (){
+        myAboveCache.clear();
+        myUnderCache.clear();
+    };
 };
 
 

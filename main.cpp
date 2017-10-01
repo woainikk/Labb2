@@ -79,6 +79,9 @@ int main() {
     max = myStat.getMax();
     min = myStat.getMin();
     cout << "min = " << min << endl << "max = " << max << endl;
+    avg = myStat.getAvg();
+    cout << "avg " << avg;
+
 
     int above, under;
     for (int i = 0; i < 3; i++) {
@@ -92,29 +95,26 @@ int main() {
         under = myStat.getCountUnder(un);
         cout << "under " << under << endl;
 
-        avg = myStat.getAvg();
-        cout << "avg " << avg;
-
-        cout << endl;
-
-
     }
 
-    for (auto it : myStat.myUnderCache) {
+ /*   for (auto it : myStat.myUnderCache) {
         cout << it.first << ": " << it.second<<endl;
     }
     for (auto it : myStat.myAboveCache) {
         cout << it.first << ": " << it.second<<endl;
-    }
+    } */
 
     myStat.addNum(4);
+    avg = myStat.getAvg();
+    cout << "avg " << avg;
 
-    for (auto it : myStat.myUnderCache) {
+
+    /*for (auto it : myStat.myUnderCache) {
         cout << it.first << ": " << it.second<<endl;
     }
     for (auto it : myStat.myAboveCache) {
         cout << it.first << ": " << it.second<<endl;
-    }
+    } */
 
 
 }
