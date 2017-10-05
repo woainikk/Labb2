@@ -97,24 +97,8 @@ int main() {
 
     }
 
- /*   for (auto it : myStat.myUnderCache) {
-        cout << it.first << ": " << it.second<<endl;
-    }
-    for (auto it : myStat.myAboveCache) {
-        cout << it.first << ": " << it.second<<endl;
-    } */
-
     myStat.addNum(4);
     avg = myStat.getAvg();
     cout << "avg " << avg << endl;
-
-
-    /*for (auto it : myStat.myUnderCache) {
-        cout << it.first << ": " << it.second<<endl;
-    }
-    for (auto it : myStat.myAboveCache) {
-        cout << it.first << ": " << it.second<<endl;
-    } */
-
 
 }
