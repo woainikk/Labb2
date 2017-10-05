@@ -70,7 +70,7 @@ public:
     int getCountUnder(float threshold) const {
         int count = 0;
         for (auto i : repository ) {
-            if (i > threshold) {
+            if (i < threshold) {
                 count++;
             }
         }
@@ -81,7 +81,7 @@ public:
     int getCountAbove(float threshold) const {
         int count = 0;
         for (auto i : repository) {
-            if (i < threshold) {
+            if (i > threshold) {
                 count++;
             }
         }
