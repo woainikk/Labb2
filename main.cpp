@@ -106,7 +106,7 @@ int main() {
 
     myStat.addNum(4);
     avg = myStat.getAvg();
-    cout << "avg " << avg;
+    cout << "avg " << avg << endl;
 
 
     /*for (auto it : myStat.myUnderCache) {

@@ -1,5 +1,4 @@
-#ifndef OOP2_STATISTICMULTISET_H
-#define OOP2_STATISTICMULTISET_H
+#pragma once
 
 #include <set>
 #include <map>
@@ -9,7 +8,6 @@
 #include <list>
 #include <fstream>
 
-using namespace std;
 
 template<class T>
 class StatisticMultiset {
@@ -19,29 +17,29 @@ public:
         cleanCashes();
     }
 
-    void addNum(const multiset<T> &numbers) {
+    void addNum(const std::multiset<T> &numbers) {
         for (auto i : numbers) {
             repository.insert(i);
         }
         cleanCashes();
     }
 
-    void addNum(const vector<T> &numbers) {
+    void addNum(const std::vector<T> &numbers) {
         for (int i : numbers) {
             repository.insert(i);
         }
         cleanCashes();
     }
 
-    void addNum(const list<T> &numbers) {
+    void addNum(const std::list<T> &numbers) {
         for (auto i : numbers) {
             repository.insert(i);
         }
         cleanCashes();
     }
 
-    void addNumsFromFile(const string &filename) {
-        ifstream file(filename);
+    void addNumsFromFile(const std::string &filename) {
+        std::ifstream file(filename);
         int j;
         while (!file.eof()) {
             file >> j;
@@ -78,7 +76,7 @@ public:
                 count++;
             }
         }
-        this->myUnderCache.insert(pair<float, int>(threshold, count));
+        this->myUnderCache.insert(std::pair<float, int>(threshold, count));
         return count;
     }
 
@@ -89,27 +87,25 @@ public:
                 count++;
             }
         }
-        this->myAboveCache.insert(pair<float, int>(threshold, count));
+        this->myAboveCache.insert(std::pair<float, int>(threshold, count));
         return count;
     }
 
     void printMS() {
         for (auto i : repository) {
-            cout << i << " ";
+            std::cout << i << " ";
         }
     }
 
 
 
 private:
-    multiset<T> repository;
-    mutable map<float, int> myUnderCache;
-    mutable map<float, int> myAboveCache;
+    std::multiset<T> repository;
+    mutable std::map<float, int> myUnderCache;
+    mutable std::map<float, int> myAboveCache;
     void cleanCashes (){
         myAboveCache.clear();
         myUnderCache.clear();
     };
 };
 
-
-#endif //OOP2_STATISTICMULTISET_H
