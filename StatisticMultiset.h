@@ -49,13 +49,11 @@ public:
     }
 
     T getMax() const {
-        //auto iterator = --repository.end();
         T mx = *(--repository.end());
         return mx;
     }
 
     T getMin() const {
-        //auto iterator = repository.begin();
         T mn = *(repository.begin());
         return mn;
     }
@@ -72,7 +70,7 @@ public:
     int getCountUnder(float threshold) const {
         int count = 0;
         for (auto i : repository ) {
-            if (i != threshold) {
+            if (i > threshold) {
                 count++;
             }
         }
@@ -83,7 +81,7 @@ public:
     int getCountAbove(float threshold) const {
         int count = 0;
         for (auto i : repository) {
-            if (i != threshold) {
+            if (i < threshold) {
                 count++;
             }
         }
